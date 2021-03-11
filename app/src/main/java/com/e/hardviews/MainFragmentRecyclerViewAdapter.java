@@ -94,7 +94,6 @@ public class MainFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainFr
         }
     }
 
-    // hey
 
     @NonNull
     @Override
