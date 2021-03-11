@@ -28,8 +28,6 @@ public class MainFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainFr
         this.listener = listener;
     }
 
-    MainFragmentRecyclerViewAdapter(int a){}
-
     public void getActions(List<MyAction> myActionList) {
         myActions = myActionList;
         notifyDataSetChanged();
