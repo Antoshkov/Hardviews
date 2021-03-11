@@ -94,9 +94,7 @@ public class MainFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainFr
         }
     }
 
-    // hey
 
-    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
