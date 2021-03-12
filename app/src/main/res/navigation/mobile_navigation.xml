@@ -15,4 +15,9 @@
         android:name="com.e.hardviews.CreateActionFragment"
         android:label="fragment_create_action"
         tools:layout="@layout/fragment_create_action" />
+    <fragment
+        android:id="@+id/confirmActionFragment"
+        android:name="com.e.hardviews.ConfirmActionFragment"
+        android:label="fragment_confirm_action"
+        tools:layout="@layout/fragment_confirm_action" />
 </navigation>
