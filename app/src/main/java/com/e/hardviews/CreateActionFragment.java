@@ -26,6 +26,9 @@ import static com.e.hardviews.DefaultAction.TIME;
 
 public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener, RadioGroup.OnCheckedChangeListener {
 
+    public final String ACTION_NAME = "actionName";
+    public final String ICON_ACTION = "iconAction";
+    public final String ICON_ACTION_REVERSE = "iconActionReverse";
     private CreateActionFragmentViewModel viewModel;
     private DefaultActionAdapter adapter;
     private RecyclerView recyclerView;
@@ -86,7 +89,11 @@ public class CreateActionFragment extends BaseFragment implements DefaultActionA
 
     @Override
     public void onClickChosenAction(DefaultAction chosenAction) {
-
+        Bundle bundle = new Bundle();
+        bundle.putString(ACTION_NAME, chosenAction.getNameAction());
+        bundle.putInt(ICON_ACTION, chosenAction.getIconAction());
+        bundle.putInt(ICON_ACTION_REVERSE, chosenAction.getIconActionReverse());
+        navController.navigate(R.id.confirmActionFragment, bundle);
     }
 
     @Override
