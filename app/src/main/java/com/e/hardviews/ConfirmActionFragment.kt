@@ -11,7 +11,8 @@ class ConfirmActionFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        inflater.inflate(R.layout.fragment_confirm_action, container, false)
+        val view =  inflater.inflate(R.layout.fragment_confirm_action, container, false)
+
         return view
     }
 

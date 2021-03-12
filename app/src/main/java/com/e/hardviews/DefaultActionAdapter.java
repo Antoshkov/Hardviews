@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdap
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
         holder.imageAction.setBackgroundResource(defaultActions.get(position).getIconAction());
         holder.nameAction.setText(defaultActions.get(position).getNameAction());
-        holder.imgGoNext.setOnClickListener(new View.OnClickListener() {
+        holder.container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 listener.onClickChosenAction(defaultActions.get(position));
@@ -76,9 +77,11 @@ public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdap
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageAction, imgGoNext;
         TextView nameAction;
+        ConstraintLayout container;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            container = itemView.findViewById(R.id.defaultActionContainer);
             imageAction = itemView.findViewById(R.id.imgCreateAction);
             imgGoNext = itemView.findViewById(R.id.imgGoNext);
             nameAction = itemView.findViewById(R.id.tvNameActionCreate);
