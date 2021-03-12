@@ -11,12 +11,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BackgroundRecyclerViewAdapter extends RecyclerView.Adapter<BackgroundRecyclerViewAdapter.MyViewHolder> {
+public class ThemeAdapter extends RecyclerView.Adapter<ThemeAdapter.MyViewHolder> {
 
     private List<AppTheme> themes = new ArrayList<>();
-    private BackgroundRecyclerAdapterListener listener;
+    private ThemeAdapterListener listener;
 
-    BackgroundRecyclerViewAdapter(BackgroundRecyclerAdapterListener listener){
+    ThemeAdapter(ThemeAdapterListener listener){
         this.listener = listener;
         themes.add(new AppTheme(R.style.SportRed, R.color.sportRed));
         themes.add(new AppTheme(R.style.SportDesert, R.color.sportDesert));

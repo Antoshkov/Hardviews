@@ -1,5 +1,5 @@
 package com.e.hardviews;
 
-public interface CreateActionAdapterListener {
+public interface DefaultActionAdapterListener {
     void onClickChosenAction(DefaultAction chosenAction);
 }

@@ -14,14 +14,14 @@ import java.util.List;
 
 import static com.e.hardviews.DefaultAction.ALL;
 
-public class CreateActionRecyclerViewAdapter extends RecyclerView.Adapter<CreateActionRecyclerViewAdapter.MyViewHolder> {
+public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdapter.MyViewHolder> {
 
     private List<DefaultAction> defaultActions = new ArrayList<>();
     private List<DefaultAction> reserveList = new ArrayList<>();
 
-    private CreateActionAdapterListener listener;
+    private DefaultActionAdapterListener listener;
 
-    CreateActionRecyclerViewAdapter(CreateActionAdapterListener listener) {
+    DefaultActionAdapter(DefaultActionAdapterListener listener) {
         this.listener = listener;
     }
 

@@ -1,5 +1,5 @@
 package com.e.hardviews;
 
-public interface BackgroundRecyclerAdapterListener {
+public interface ThemeAdapterListener {
     void changeTheme(int theme);
 }

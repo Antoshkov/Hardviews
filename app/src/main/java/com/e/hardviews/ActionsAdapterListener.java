@@ -1,5 +1,5 @@
 package com.e.hardviews;
 
-public interface MainFragmentRecyclerAdapterListener {
+public interface ActionsAdapterListener {
     public void createNewAction();
 }
