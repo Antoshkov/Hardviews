@@ -5,7 +5,6 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,15 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainFragmentRecyclerViewAdapter.MyViewHolder> {
+public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHolder> {
 
-    private MainFragmentRecyclerAdapterListener listener;
+    private ActionsAdapterListener listener;
     private List<MyAction> myActions = new ArrayList<>();
     private int progress = 0;
     private int progressDay = 0;
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    MainFragmentRecyclerViewAdapter(MainFragmentRecyclerAdapterListener listener) {
+    ActionsAdapter(ActionsAdapterListener listener) {
         this.listener = listener;
     }
 

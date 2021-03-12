@@ -10,11 +10,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,10 +24,10 @@ import static com.e.hardviews.DefaultAction.FOOD;
 import static com.e.hardviews.DefaultAction.HEALTH;
 import static com.e.hardviews.DefaultAction.TIME;
 
-public class CreateActionFragment extends BaseFragment implements CreateActionAdapterListener, RadioGroup.OnCheckedChangeListener {
+public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener, RadioGroup.OnCheckedChangeListener {
 
     private CreateActionFragmentViewModel viewModel;
-    private CreateActionRecyclerViewAdapter adapter;
+    private DefaultActionAdapter adapter;
     private RecyclerView recyclerView;
     private RadioGroup radioGroup;
     private RadioButton btnAll, btnHealth, btnFood, btnTime, btnBadHabits;
@@ -48,7 +46,7 @@ public class CreateActionFragment extends BaseFragment implements CreateActionAd
                 navController.popBackStack();
             }
         });
-        adapter = new CreateActionRecyclerViewAdapter(this);
+        adapter = new DefaultActionAdapter(this);
         recyclerView.setAdapter(adapter);
         radioGroup.setOnCheckedChangeListener(this);
         etNewAction.setOnKeyListener(new View.OnKeyListener() {

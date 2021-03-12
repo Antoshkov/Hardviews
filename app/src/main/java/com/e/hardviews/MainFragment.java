@@ -1,8 +1,6 @@
 package com.e.hardviews;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 
 
@@ -13,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,11 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class MainFragment extends BaseFragment implements View.OnClickListener,
-        BackgroundRecyclerAdapterListener, MainFragmentRecyclerAdapterListener{
+        ThemesAdapterListener, ActionsAdapterListener {
 
     private MainFragmentViewModel viewModel;
-    private MainFragmentRecyclerViewAdapter mainItemAdapter;
-    private BackgroundRecyclerViewAdapter backgroundAdapter;
+    private ActionsAdapter mainItemAdapter;
+    private ThemesAdapter backgroundAdapter;
     private RecyclerView recyclerMain, recyclerBackground;
     private ImageView imgMenu, imgSettings, imgStar, imgCloseSettings,
             imgTimeSettings, imgAnotherSettings, imgProperties;
@@ -72,8 +68,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
     private void initViews(View view){
         recyclerMain = view.findViewById(R.id.recycler);
         recyclerBackground = view.findViewById(R.id.recycleBackgrounds);
-        mainItemAdapter = new MainFragmentRecyclerViewAdapter(this);
-        backgroundAdapter = new BackgroundRecyclerViewAdapter(this);
+        mainItemAdapter = new ActionsAdapter(this);
+        backgroundAdapter = new ThemesAdapter(this);
         imgMenu = view.findViewById(R.id.btnMenu);
         imgSettings = view.findViewById(R.id.btnOpenSettings);
         imgStar = view.findViewById(R.id.btnStar);
