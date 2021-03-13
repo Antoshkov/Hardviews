@@ -67,19 +67,22 @@ class ConfirmActionFragment : BaseFragment(), View.OnClickListener {
 
     private val mTextEditorWatcher: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) { tvCountSymbol.text = "${s.length}/28" }
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+            tvCountSymbol.text = "${s.length}/28"
+        }
+
         override fun afterTextChanged(s: Editable) {}
     }
 
-    private fun timesUp(){
-        if (countTimes<10) {
+    private fun timesUp() {
+        if (countTimes < 10) {
             countTimes++
             tvCountTimes.text = countTimes.toString()
         }
     }
 
-    private fun timesDown(){
-        if (countTimes>1) {
+    private fun timesDown() {
+        if (countTimes > 1) {
             countTimes--
             tvCountTimes.text = countTimes.toString()
         }
