@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
-public class MainFragmentViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     private MainModel model = new MainModel();
     private MutableLiveData<List<MyAction>> actionsLiveData = new MutableLiveData<>();
@@ -31,6 +31,11 @@ public class MainFragmentViewModel extends ViewModel {
     public void deleteActionPlus(){
         model.deleteActionForCreate();
         getActions();
+    }
+    public void addNewAction(MyAction action){
+        model.addNewAction(action);
+        getActions();
+
     }
 
     public void sendNewTheme(int theme){

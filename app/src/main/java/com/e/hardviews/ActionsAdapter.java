@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
 
     private ActionsAdapterListener listener;
     private List<MyAction> myActions = new ArrayList<>();
+    private boolean settingsCheck = false;
     private int progress = 0;
     private int progressDay = 0;
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -32,6 +34,10 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         notifyDataSetChanged();
     }
 
+    public void isSettingsOpen(boolean isSettingsOpen) {
+        settingsCheck = isSettingsOpen;
+    }
+
     private void progressRun(final MyViewHolder holder, final int percent) {
         progressDay++;
         holder.progressMain.setProgress(progressDay);
@@ -41,47 +47,9 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
                 public void run() {
                     progressRun(holder, percent);
                 }
-            }, 10);
+            }, 200);
 
         } else progressDay = percent;
-    }
-
-    // some comment
-
-    private void progressRunOneTime(final MyViewHolder holder) {
-        progress++;
-        holder.progressOneTime.setVisibility(View.VISIBLE);
-        holder.progressOneTime.setProgress(progress);
-        if (progress < 100) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressRunOneTime(holder);
-                }
-            }, 10);
-        } else {
-            progressRunBackOneTime(holder);
-        }
-    }
-
-    private void progressRunBackOneTime(final MyViewHolder holder) {
-        progress--;
-        holder.iconAction.setVisibility(View.GONE);
-        holder.iconCheck.setVisibility(View.VISIBLE);
-        holder.progressOneTime.setProgress(progress);
-        if (progress > 0) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    progressRunBackOneTime(holder);
-                }
-            }, 10);
-        } else {
-            progress = 0;
-            holder.iconCheck.setVisibility(View.GONE);
-            holder.iconAction.setVisibility(View.VISIBLE);
-            holder.progressOneTime.setVisibility(View.GONE);
-        }
         if ((progressDay == 100 || progressDay == 99) && progress == 0) {
             holder.imgWellDone.setVisibility(View.VISIBLE);
             holder.iconCheckBlack.setVisibility(View.VISIBLE);
@@ -91,8 +59,46 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
                     holder.iconCheckBlack.setVisibility(View.GONE);
                     holder.iconActionBlack.setVisibility(View.VISIBLE);
                 }
-            }, 1000);
+            }, 10);
         }
+    }
+
+    private void progressRunOneTime(final MyViewHolder holder, final int percent) {
+        progress++;
+        holder.progressOneTime.setVisibility(View.VISIBLE);
+        holder.progressOneTime.setProgress(progress);
+        if (progress < 100) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressRunOneTime(holder, percent);
+                }
+            }, 2);
+        } else {
+            progressRunBackOneTime(holder, percent);
+
+        }
+    }
+
+    private void progressRunBackOneTime(final MyViewHolder holder, final int percent) {
+        progress--;
+        holder.iconAction.setVisibility(View.GONE);
+        holder.iconCheck.setVisibility(View.VISIBLE);
+        holder.progressOneTime.setProgress(progress);
+        if (progress > 0) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    progressRunBackOneTime(holder, percent);
+                }
+            }, 2);
+        } else {
+            progress = 0;
+            holder.iconCheck.setVisibility(View.GONE);
+            holder.iconAction.setVisibility(View.VISIBLE);
+            holder.progressOneTime.setVisibility(View.GONE);
+        }
+        progressRun(holder, percent);
     }
 
 
@@ -105,6 +111,8 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        if (settingsCheck) holder.btnEdit.setVisibility(View.VISIBLE);
+        else holder.btnEdit.setVisibility(View.GONE);
         final MyAction chosenAction = myActions.get(position);
         holder.nameAction.setText(chosenAction.getNameAction());
         holder.iconAction.setBackgroundResource(chosenAction.getIconAction());
@@ -115,8 +123,8 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
                 if (chosenAction.getCountPressedTimes() < chosenAction.getAmountPerDay()) {
                     int part = (100 / chosenAction.getAmountPerDay()) * chosenAction.getCountPressedTimes();
                     int percent = 100 / chosenAction.getAmountPerDay() + part;
-                    progressRun(holder, percent);
-                    progressRunOneTime(holder);
+                    progressRunOneTime(holder, percent);
+
                     chosenAction.addPressedTimes();
                 }
                 return false;
@@ -144,6 +152,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         ConstraintLayout container;
         CircularSeekBar progressMain, progressOneTime;
         ImageView iconAction, iconCheck, imgWellDone, iconCheckBlack, iconActionBlack;
+        ImageButton btnEdit;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -157,6 +166,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
             imgWellDone = itemView.findViewById(R.id.wellDone);
             iconActionBlack = itemView.findViewById(R.id.iconActionReverse);
             iconCheckBlack = itemView.findViewById(R.id.checkedBlack);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
 
 
         }

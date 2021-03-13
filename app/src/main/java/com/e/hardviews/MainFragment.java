@@ -20,7 +20,7 @@ import java.util.List;
 public class MainFragment extends BaseFragment implements View.OnClickListener,
         ThemesAdapterListener, ActionsAdapterListener {
 
-    private MainFragmentViewModel viewModel;
+    private MainViewModel viewModel;
     private ActionsAdapter mainItemAdapter;
     private ThemesAdapter backgroundAdapter;
     private RecyclerView recyclerMain, recyclerBackground;
@@ -44,7 +44,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
         recyclerBackground.setAdapter(backgroundAdapter);
         recyclerMain.setAdapter(mainItemAdapter);
         bindOnClickListener();
-        viewModel = ViewModelProviders.of(getActivity()).get(MainFragmentViewModel.class);
+        viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         viewModel.getActions();
         viewModel.getActionsLiveData().observe(getViewLifecycleOwner(), new Observer<List<MyAction>>() {
             @Override
@@ -83,11 +83,13 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
 
     private void closeSettings(){
         viewModel.deleteActionPlus();
+        mainItemAdapter.isSettingsOpen(false);
         linearLayoutSettings.setVisibility(View.GONE);
         linearLayoutBackgrounds.setVisibility(View.GONE);
     }
 
     private void openSettings(){
+        mainItemAdapter.isSettingsOpen(true);
         viewModel.actionPlus();
         linearLayoutSettings.setVisibility(View.VISIBLE);
         linearLayoutBackgrounds.setVisibility(View.VISIBLE);
