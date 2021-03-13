@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@+id/etActionName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvConfirmTask">
@@ -47,10 +48,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/ic_dog_side"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toBottomOf="@id/progressMain"
+            app:layout_constraintEnd_toEndOf="@id/progressMain"
+            app:layout_constraintStart_toStartOf="@id/progressMain"
+            app:layout_constraintTop_toTopOf="@id/progressMain" />
 
         <com.e.hardviews.CircularSeekBar
             android:id="@+id/progressMain"
@@ -62,10 +63,9 @@
             app:circle_x_radius="100dp"
             app:circle_y_radius="100dp"
             app:end_angle="270"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvActionName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:pointer_alpha_ontouch="100"
             app:pointer_color="#D8DEE3"
             app:pointer_halo_color="#00C3C9CF"
@@ -109,6 +109,7 @@
         android:imeOptions="actionGo"
         android:singleLine="true"
         android:text="@string/walk_the_dog"
+        android:maxLength="28"
         android:textColor="@android:color/white"
         android:textColorHint="#99FFFFFF"
         android:textStyle="bold"
@@ -222,17 +223,68 @@
         app:layout_constraintEnd_toEndOf="@id/imgBack2"
         app:layout_constraintStart_toStartOf="@+id/imgBack2"
         app:layout_constraintTop_toTopOf="@id/imgBack2" />
-
     <TextView
         android:id="@+id/tvTimePerDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:text="@string/timesDay"
+        android:text="1"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imgBack2"
         app:layout_constraintStart_toEndOf="@id/imgBack2"
         app:layout_constraintTop_toTopOf="@+id/imgBack2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:text="@string/timesDay"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBack2"
+        app:layout_constraintStart_toEndOf="@id/tvTimePerDay"
+        app:layout_constraintTop_toTopOf="@+id/imgBack2" />
+
+    <ImageView
+        android:id="@+id/imgMinus"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/background_darkness"
+        app:layout_constraintTop_toTopOf="@+id/imgBack2"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBack2"
+        app:layout_constraintEnd_toStartOf="@+id/imgPlus" />
+    <ImageButton
+        android:id="@+id/btnMinus"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toTopOf="@id/imgMinus"
+        app:layout_constraintBottom_toBottomOf="@id/imgMinus"
+        app:layout_constraintStart_toStartOf="@id/imgMinus"
+        app:layout_constraintEnd_toEndOf="@id/imgMinus"
+        android:background="@drawable/button_image_selector"
+        android:foreground="@drawable/ic_minus_thick" />
+
+    <ImageView
+        android:id="@+id/imgPlus"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/background_darkness"
+        app:layout_constraintTop_toTopOf="@+id/imgBack2"
+        app:layout_constraintBottom_toBottomOf="@+id/imgBack2"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <ImageButton
+        android:id="@+id/btnPlus"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        app:layout_constraintTop_toTopOf="@id/imgPlus"
+        app:layout_constraintBottom_toBottomOf="@id/imgPlus"
+        app:layout_constraintStart_toStartOf="@id/imgPlus"
+        app:layout_constraintEnd_toEndOf="@id/imgPlus"
+        android:background="@drawable/button_image_selector"
+        android:foreground="@drawable/ic_plus_thick"
+        />
+
 
     <View
         android:layout_width="match_parent"
@@ -264,12 +316,11 @@
         app:layout_constraintTop_toBottomOf="@+id/imgBack2">
 
         <Button
-
             android:id="@+id/btnSaveTask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:background="@drawable/background_darkness"
+            android:background="@drawable/button_save_task_selector"
             android:padding="16dp"
             android:text="@string/save_task"
             android:textSize="22dp"

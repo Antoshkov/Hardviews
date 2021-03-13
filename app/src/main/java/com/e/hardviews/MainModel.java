@@ -44,6 +44,9 @@ public class MainModel {
             }
         }
     }
+    public void addNewAction(MyAction newAction){
+        actions.add(newAction);
+    }
 
     private List<DefaultAction> createDefaultActions(){
         List<DefaultAction> defaultActionList = new ArrayList<>();
