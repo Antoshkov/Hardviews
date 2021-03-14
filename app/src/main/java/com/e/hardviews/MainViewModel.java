@@ -29,7 +29,6 @@ public class MainViewModel extends ViewModel {
             model.addActionForCreate();
             getActions();
         }
-
     }
 
     public void actionCreatorItem(){
