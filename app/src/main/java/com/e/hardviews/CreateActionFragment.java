@@ -26,9 +26,9 @@ import static com.e.hardviews.DefaultAction.TIME;
 
 public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener, RadioGroup.OnCheckedChangeListener {
 
-    public final String ACTION_NAME = "actionName";
-    public final String ICON_ACTION = "iconAction";
-    public final String ICON_ACTION_REVERSE = "iconActionReverse";
+    public static final String ACTION_NAME = "actionName";
+    public static final String ICON_ACTION = "iconAction";
+    public static final String ICON_ACTION_REVERSE = "iconActionReverse";
     private CreateActionFragmentViewModel viewModel;
     private DefaultActionAdapter adapter;
     private RecyclerView recyclerView;

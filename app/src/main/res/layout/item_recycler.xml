@@ -88,6 +88,7 @@
             app:circle_stroke_width="12dp"
             app:circle_x_radius="100dp"
             app:circle_y_radius="100dp"
+            app:progress="20"
             app:end_angle="270"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -96,6 +97,15 @@
             app:pointer_halo_color="#00C3C9CF"
             app:pointer_radius="0dp"
             app:start_angle="270" />
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:elevation="10dp"
+            android:background="@drawable/ic_dots_horizontal_circle"
+            app:layout_constraintEnd_toEndOf="@+id/progressMain"
+            app:layout_constraintBottom_toBottomOf="@+id/progressMain"
+            android:visibility="gone" />
 
         <ImageView
             android:id="@+id/wellDone"
