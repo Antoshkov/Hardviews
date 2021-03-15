@@ -17,7 +17,7 @@ class ConfirmEditActionFragment: BaseConfirmActionFragment() {
         btnSaveTask.setOnClickListener {
             val icon = requireArguments().getInt(CreateActionFragment.ICON_ACTION)
             val iconRev = requireArguments().getInt(CreateActionFragment.ICON_ACTION_REVERSE)
-            viewModel.editAction(MyAction(actionName.text.toString(), icon, iconRev, countTimes))
+            viewModel.editAction(Action(actionName.text.toString(), icon, iconRev, countTimes))
             navController.navigate(R.id.mainFragment)
         }
         return view

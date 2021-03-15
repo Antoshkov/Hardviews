@@ -19,7 +19,7 @@ import java.util.List;
 public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHolder> {
 
     private ActionsAdapterListener listener;
-    private List<MyAction> myActions = new ArrayList<>();
+    private List<Action> actions = new ArrayList<>();
     private boolean settingsCheck = false;
     private int progress = 0;
     private int progressDay = 0;
@@ -29,8 +29,8 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         this.listener = listener;
     }
 
-    public void getActions(List<MyAction> myActionList) {
-        myActions = myActionList;
+    public void getActions(List<Action> actionList) {
+        actions = actionList;
         notifyDataSetChanged();
     }
 
@@ -111,7 +111,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        final MyAction chosenAction = myActions.get(position);
+        final Action chosenAction = actions.get(position);
         if (settingsCheck) {
             holder.btnEdit.setVisibility(View.VISIBLE);
             holder.btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +150,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return myActions.size();
+        return actions.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

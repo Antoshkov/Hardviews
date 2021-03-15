@@ -10,17 +10,19 @@ import static com.e.hardviews.DefaultAction.TIME;
 
 public class MainModel {
 
-//    AppDatabase db = App.getInstance().getDatabase();
-//    MyActionsDBDao actionsDBDao = db.actionsDBDao();
+    AppDatabase db = App.getInstance().getDatabase();
+    MyActionsDBDao actionsDBDao = db.actionsDBDao();
+
     private final String CREATE_ACTION = "Add a Task";
-    private List<MyAction> actions = new ArrayList<>();
-    private List<DefaultAction> defaultActions;
+    private final List<Action> actions;
+    private final List<DefaultAction> defaultActions;
 
     public MainModel (){
+        actions = actionsDBDao.getAll();
         defaultActions = createDefaultActions();
     }
 
-    public List<MyAction> getActions() {
+    public List<Action> getActions() {
         return actions;
     }
 
@@ -29,27 +31,28 @@ public class MainModel {
     }
 
     public void addActionForCreate(){
-        MyAction creator = new MyAction(CREATE_ACTION, R.drawable.ic_plus_thick, R.drawable.ic_plus_thick, 1);
+        Action creator = new Action(CREATE_ACTION, R.drawable.ic_plus_thick, R.drawable.ic_plus_thick, 1);
         creator.setCreator(true);
         actions.add(creator);
     }
 
     public void deleteActionForCreate(){
         for (int i = 0; i < actions.size(); i++){
-            MyAction action = actions.get(i);
+            Action action = actions.get(i);
             if (action.getNameAction().equals(CREATE_ACTION)){
                 actions.remove(action);
             }
         }
     }
 
-    public void addNewAction(MyAction newAction){
+    public void addNewAction(Action newAction){
+        actionsDBDao.insert(newAction);
         actions.add(newAction);
     }
 
-    public void editAction(MyAction chosenAction){
-        for (int i = 0; i < actions.size(); i++){
-        }
+    public void editAction(Action chosenAction){
+        actionsDBDao.insert(chosenAction);
+        //some problem
     }
 
     private List<DefaultAction> createDefaultActions(){

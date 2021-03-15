@@ -12,5 +12,13 @@
     <string name="walk_the_dog">Walk the dog</string>
     <string name="Create_own">Create your own:</string>
     <string name="title">Title:</string>
+    <string name="monday">Mo</string>
+    <string name="tuesday">Tu</string>
+    <string name="wednesday">We</string>
+    <string name="thursday">Th</string>
+    <string name="friday">Fr</string>
+    <string name="saturday">Sa</string>
+    <string name="sunday">Su</string>
+    <string name="apply_and_Back">Apply and Back</string>
     <string name="text_Details">Task start each day as incomplete. Mark a task as done to increase yor steak.</string>
 </resources>

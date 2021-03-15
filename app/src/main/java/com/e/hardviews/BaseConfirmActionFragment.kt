@@ -12,17 +12,18 @@ import androidx.lifecycle.ViewModelProviders
 import com.e.hardviews.CreateActionFragment.*
 
 abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener {
-     lateinit var viewModel: MainViewModel
-     lateinit var editText: EditText
-     lateinit var iconAction: ImageView
-     lateinit var imgClose: ImageView
-     lateinit var actionName: TextView
-     lateinit var tvCountSymbol: TextView
-     lateinit var tvCountTimes: TextView
-     lateinit var btnSaveTask: Button
-     lateinit var btnPlus: ImageButton
-     lateinit var btnMinus: ImageButton
-     var countTimes: Int = 1
+    lateinit var viewModel: MainViewModel
+    lateinit var editText: EditText
+    lateinit var iconAction: ImageView
+    lateinit var imgClose: ImageView
+    lateinit var imgChooseDay: ImageView
+    lateinit var actionName: TextView
+    lateinit var tvCountSymbol: TextView
+    lateinit var tvCountTimes: TextView
+    lateinit var btnSaveTask: Button
+    lateinit var btnPlus: ImageButton
+    lateinit var btnMinus: ImageButton
+    var countTimes: Int = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val textName = requireArguments().getString(ACTION_NAME)
@@ -39,6 +40,7 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
             }
             return@setOnKeyListener false
         }
+        imgChooseDay.setOnClickListener(this)
         imgClose.setOnClickListener(this)
         btnPlus.setOnClickListener(this)
         btnMinus.setOnClickListener(this)
@@ -55,11 +57,12 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
         tvCountSymbol = view.findViewById(R.id.tvCountSymbol)
         btnMinus = view.findViewById(R.id.btnMinus)
         btnPlus = view.findViewById(R.id.btnPlus)
+        imgChooseDay = view.findViewById(R.id.imgChooseDay)
         val progressMain = view.findViewById<CircularSeekBar>(R.id.progressMain)
         progressMain.setIsTouchEnabled(false)
     }
 
-    protected val mTextEditorWatcher: TextWatcher = object : TextWatcher {
+    private val mTextEditorWatcher: TextWatcher = object : TextWatcher {
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             tvCountSymbol.text = "${s.length}/28"
@@ -89,6 +92,7 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
                 navController.popBackStack()
                 hideKeyboard()
             }
+            R.id.imgChooseDay -> navController.navigate(R.id.chooseDayFragment)
         }
     }
 }

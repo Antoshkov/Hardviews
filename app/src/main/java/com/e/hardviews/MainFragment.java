@@ -51,10 +51,10 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
         bindOnClickListener();
         viewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         viewModel.getActions();
-        viewModel.getActionsLiveData().observe(getViewLifecycleOwner(), new Observer<List<MyAction>>() {
+        viewModel.getActionsLiveData().observe(getViewLifecycleOwner(), new Observer<List<Action>>() {
             @Override
-            public void onChanged(List<MyAction> myActionList) {
-                mainItemAdapter.getActions(myActionList);
+            public void onChanged(List<Action> actionList) {
+                mainItemAdapter.getActions(actionList);
             }
         });
         return view;
@@ -127,7 +127,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
     }
 
     @Override
-    public void editChosenAction(MyAction chosenAction) {
+    public void editChosenAction(Action chosenAction) {
         Bundle bundle = new Bundle();
         bundle.putString(ACTION_NAME, chosenAction.getNameAction());
         bundle.putInt(ICON_ACTION, chosenAction.getIconAction());

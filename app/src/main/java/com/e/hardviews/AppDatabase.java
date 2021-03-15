@@ -4,7 +4,7 @@ import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {MyAction.class}, version = 1)
+@Database(entities = {Action.class}, version = 2)
     public abstract class AppDatabase extends RoomDatabase {
         public abstract MyActionsDBDao actionsDBDao();
     }

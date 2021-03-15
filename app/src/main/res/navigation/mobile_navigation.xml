@@ -23,4 +23,9 @@
         android:id="@+id/confirmEditActionFragment"
         android:name="com.e.hardviews.ConfirmEditActionFragment"
         android:label="ConfirmEditActionFragment" />
+    <fragment
+        android:id="@+id/chooseDayFragment"
+        android:name="com.e.hardviews.ChooseDayFragment"
+        android:label="fragment_choose_day"
+        tools:layout="@layout/fragment_choose_day" />
 </navigation>

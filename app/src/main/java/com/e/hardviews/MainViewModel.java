@@ -9,15 +9,15 @@ import java.util.List;
 public class MainViewModel extends ViewModel {
 
     private MainModel model = new MainModel();
-    private List<MyAction> actions = new ArrayList<>();
-    private MutableLiveData<List<MyAction>> actionsLiveData = new MutableLiveData<>();
+    private List<Action> actions = new ArrayList<>();
+    private MutableLiveData<List<Action>> actionsLiveData = new MutableLiveData<>();
     private MutableLiveData<Integer> themeLiveData = new MutableLiveData<>();
 
     public MutableLiveData<Integer> getThemeLiveData() {
         return themeLiveData;
     }
 
-    public MutableLiveData<List<MyAction>> getActionsLiveData() {
+    public MutableLiveData<List<Action>> getActionsLiveData() {
         return actionsLiveData;
     }
 
@@ -41,13 +41,13 @@ public class MainViewModel extends ViewModel {
         getActions();
     }
 
-    public void addNewAction(MyAction action){
+    public void addNewAction(Action action){
         model.addNewAction(action);
         deleteActionCreator();
         getActions();
     }
 
-    public void editAction(MyAction action){
+    public void editAction(Action action){
         model.editAction(action);
         getActions();
     }
