@@ -18,11 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import static com.e.hardviews.DefaultAction.ALL;
-import static com.e.hardviews.DefaultAction.BAD_HABITS;
-import static com.e.hardviews.DefaultAction.FOOD;
-import static com.e.hardviews.DefaultAction.HEALTH;
-import static com.e.hardviews.DefaultAction.TIME;
+import static com.e.hardviews.Action.ALL;
+import static com.e.hardviews.Action.BAD_HABITS;
+import static com.e.hardviews.Action.FOOD;
+import static com.e.hardviews.Action.HEALTH;
+import static com.e.hardviews.Action.TIME;
+import static com.e.hardviews.MainFragment.CHOSEN_ACTION;
 
 public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener, RadioGroup.OnCheckedChangeListener {
 
@@ -65,9 +66,9 @@ public class CreateActionFragment extends BaseFragment implements DefaultActionA
         });
         viewModel = ViewModelProviders.of(this).get(CreateActionFragmentViewModel.class);
         viewModel.getDefaultActions();
-        viewModel.getDefaultActionLiveData().observe(getViewLifecycleOwner(), new Observer<List<DefaultAction>>() {
+        viewModel.getDefaultActionLiveData().observe(getViewLifecycleOwner(), new Observer<List<Action>>() {
             @Override
-            public void onChanged(List<DefaultAction> defaultActionList) {
+            public void onChanged(List<Action> defaultActionList) {
                 adapter.sendDefaultAction(defaultActionList);
             }
         });
@@ -89,11 +90,12 @@ public class CreateActionFragment extends BaseFragment implements DefaultActionA
     }
 
     @Override
-    public void onClickChosenAction(DefaultAction chosenAction) {
+    public void onClickChosenAction(Action chosenAction) {
         Bundle bundle = new Bundle();
-        bundle.putString(ACTION_NAME, chosenAction.getNameAction());
-        bundle.putInt(ICON_ACTION, chosenAction.getIconAction());
-        bundle.putInt(ICON_ACTION_REVERSE, chosenAction.getIconActionReverse());
+        bundle.putParcelable(CHOSEN_ACTION, chosenAction);
+//        bundle.putString(ACTION_NAME, chosenAction.getNameAction());
+//        bundle.putInt(ICON_ACTION, chosenAction.getIconAction());
+//        bundle.putInt(ICON_ACTION_REVERSE, chosenAction.getIconActionReverse());
         navController.navigate(R.id.confirmNewActionFragment, bundle);
     }
 

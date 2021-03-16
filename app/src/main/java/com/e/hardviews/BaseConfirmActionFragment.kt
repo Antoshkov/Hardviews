@@ -1,6 +1,7 @@
 package com.e.hardviews
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
@@ -8,8 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProviders
 import com.e.hardviews.CreateActionFragment.*
+import com.e.hardviews.MainFragment.CHOSEN_ACTION
 
 abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener {
     lateinit var viewModel: MainViewModel
@@ -23,12 +27,15 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
     lateinit var btnSaveTask: Button
     lateinit var btnPlus: ImageButton
     lateinit var btnMinus: ImageButton
+    lateinit var constButton: ConstraintLayout
+    var action: Action? = null
     var countTimes: Int = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val textName = requireArguments().getString(ACTION_NAME)
+        action = requireArguments().getParcelable(CHOSEN_ACTION)
+        val textName = action?.nameAction
         viewModel = ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
-        iconAction.setBackgroundResource(requireArguments().getInt(ICON_ACTION))
+        action?.let { iconAction.setBackgroundResource(it.iconAction) }
         actionName.text = textName
         editText.setText(textName)
         tvCountSymbol.text = "${textName?.length}/28"
@@ -58,6 +65,8 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
         btnMinus = view.findViewById(R.id.btnMinus)
         btnPlus = view.findViewById(R.id.btnPlus)
         imgChooseDay = view.findViewById(R.id.imgChooseDay)
+        constButton = view.findViewById(R.id.constButton)
+
         val progressMain = view.findViewById<CircularSeekBar>(R.id.progressMain)
         progressMain.setIsTouchEnabled(false)
     }

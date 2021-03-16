@@ -3,10 +3,10 @@ package com.e.hardviews;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.e.hardviews.DefaultAction.BAD_HABITS;
-import static com.e.hardviews.DefaultAction.FOOD;
-import static com.e.hardviews.DefaultAction.HEALTH;
-import static com.e.hardviews.DefaultAction.TIME;
+import static com.e.hardviews.Action.BAD_HABITS;
+import static com.e.hardviews.Action.FOOD;
+import static com.e.hardviews.Action.HEALTH;
+import static com.e.hardviews.Action.TIME;
 
 public class MainModel {
 
@@ -14,8 +14,8 @@ public class MainModel {
     MyActionsDBDao actionsDBDao = db.actionsDBDao();
 
     private final String CREATE_ACTION = "Add a Task";
-    private final List<Action> actions;
-    private final List<DefaultAction> defaultActions;
+    private List<Action> actions;
+    private final List<Action> defaultActions;
 
     public MainModel (){
         actions = actionsDBDao.getAll();
@@ -26,14 +26,21 @@ public class MainModel {
         return actions;
     }
 
-    public List<DefaultAction> getDefaultActions() {
+    public List<Action> getDefaultActions() {
         return defaultActions;
     }
 
     public void addActionForCreate(){
-        Action creator = new Action(CREATE_ACTION, R.drawable.ic_plus_thick, R.drawable.ic_plus_thick, 1);
-        creator.setCreator(true);
-        actions.add(creator);
+        boolean checkCreator = false;
+        for (int i = 0; i < actions.size(); i++){
+            Action action = actions.get(i);
+            if (action.isCreator()) checkCreator = true;
+        }
+        if (!checkCreator){
+            Action creator = new Action(CREATE_ACTION, R.drawable.ic_plus_thick, R.drawable.ic_plus_thick, 1, 1);
+            creator.setCreator(true);
+            actions.add(creator);
+        }
     }
 
     public void deleteActionForCreate(){
@@ -47,26 +54,31 @@ public class MainModel {
 
     public void addNewAction(Action newAction){
         actionsDBDao.insert(newAction);
-        actions.add(newAction);
+        actions = actionsDBDao.getAll();
     }
 
     public void editAction(Action chosenAction){
         actionsDBDao.insert(chosenAction);
-        //some problem
+        actions = actionsDBDao.getAll();
     }
 
-    private List<DefaultAction> createDefaultActions(){
-        List<DefaultAction> defaultActionList = new ArrayList<>();
-        defaultActionList.add(new DefaultAction("brush teeth", R.drawable.ic_tooth, R.drawable.ic_tooth_reverse, HEALTH));
-        defaultActionList.add(new DefaultAction("walk the dog", R.drawable.ic_dog_side, R.drawable.ic_dog_side_reverse, TIME));
-        defaultActionList.add(new DefaultAction("Running", R.drawable.ic_run_fast_reverse, R.drawable.ic_run_fast, HEALTH));
-        defaultActionList.add(new DefaultAction("Take a vitamins", R.drawable.ic_pill_reverse, R.drawable.ic_pill, HEALTH));
-        defaultActionList.add(new DefaultAction("Homework", R.drawable.ic_lead_pencil_reverse, R.drawable.ic_lead_pencil, TIME));
-        defaultActionList.add(new DefaultAction("Read a book", R.drawable.ic_bookshelf_reverse, R.drawable.ic_bookshelf, TIME));
-        defaultActionList.add(new DefaultAction("Cook a chiken", R.drawable.ic_food_turkey_reverse, R.drawable.ic_food_turkey, FOOD));
-        defaultActionList.add(new DefaultAction("Take a food", R.drawable.ic_pasta_reverse, R.drawable.ic_pasta, FOOD));
-        defaultActionList.add(new DefaultAction("No alcohol", R.drawable.ic_glass_cocktail_reverse, R.drawable.ic_glass_cocktail, BAD_HABITS));
-        defaultActionList.add(new DefaultAction("No smoking", R.drawable.ic_smoking_off_reverse, R.drawable.ic_smoking_off, BAD_HABITS));
+    public void deleteAction(Action action){
+        actionsDBDao.delete(action);
+        actions = actionsDBDao.getAll();
+    }
+
+    private List<Action> createDefaultActions(){
+        List<Action> defaultActionList = new ArrayList<>();
+        defaultActionList.add(new Action("brush teeth", R.drawable.ic_tooth, R.drawable.ic_tooth_reverse, 1, HEALTH));
+        defaultActionList.add(new Action("walk the dog", R.drawable.ic_dog_side, R.drawable.ic_dog_side_reverse, 1,TIME));
+        defaultActionList.add(new Action("Running", R.drawable.ic_run_fast_reverse, R.drawable.ic_run_fast, 1,HEALTH));
+        defaultActionList.add(new Action("Take a vitamins", R.drawable.ic_pill_reverse, R.drawable.ic_pill, 1,HEALTH));
+        defaultActionList.add(new Action("Homework", R.drawable.ic_lead_pencil_reverse, R.drawable.ic_lead_pencil, 1,TIME));
+        defaultActionList.add(new Action("Read a book", R.drawable.ic_bookshelf_reverse, R.drawable.ic_bookshelf, 1,TIME));
+        defaultActionList.add(new Action("Cook a chiken", R.drawable.ic_food_turkey_reverse, R.drawable.ic_food_turkey, 1,FOOD));
+        defaultActionList.add(new Action("Take a food", R.drawable.ic_pasta_reverse, R.drawable.ic_pasta, 1,FOOD));
+        defaultActionList.add(new Action("No alcohol", R.drawable.ic_glass_cocktail_reverse, R.drawable.ic_glass_cocktail, 1,BAD_HABITS));
+        defaultActionList.add(new Action("No smoking", R.drawable.ic_smoking_off_reverse, R.drawable.ic_smoking_off, 1,BAD_HABITS));
         return defaultActionList;
     }
 

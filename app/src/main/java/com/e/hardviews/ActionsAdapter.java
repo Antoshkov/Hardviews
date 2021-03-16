@@ -101,7 +101,6 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         progressRun(holder, percent);
     }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -112,7 +111,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final Action chosenAction = actions.get(position);
-        if (settingsCheck) {
+        if (settingsCheck && !chosenAction.isCreator()) {
             holder.btnEdit.setVisibility(View.VISIBLE);
             holder.btnEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -141,9 +140,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
             public void onClick(View view) {
                 if (chosenAction.isCreator()) {
                     listener.createNewAction();
-                } else {
-
-                }
+                } else { }
             }
         });
     }

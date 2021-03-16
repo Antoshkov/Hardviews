@@ -1,12 +1,11 @@
 package com.e.hardviews;
 
-public class DefaultAction {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    public static final int ALL = 0;
-    public static final int HEALTH = 101;
-    public static final int FOOD = 201;
-    public static final int TIME = 31;
-    public static final int BAD_HABITS = 666;
+public class DefaultAction implements Parcelable {
+
+
 
     private int iconAction, iconActionReverse, actionType;
     private String nameAction;
@@ -17,6 +16,25 @@ public class DefaultAction {
         this.iconActionReverse = iconActionReverse;
         this.nameAction = nameAction;
     }
+
+    protected DefaultAction(Parcel in) {
+        iconAction = in.readInt();
+        iconActionReverse = in.readInt();
+        actionType = in.readInt();
+        nameAction = in.readString();
+    }
+
+    public static final Creator<DefaultAction> CREATOR = new Creator<DefaultAction>() {
+        @Override
+        public DefaultAction createFromParcel(Parcel in) {
+            return new DefaultAction(in);
+        }
+
+        @Override
+        public DefaultAction[] newArray(int size) {
+            return new DefaultAction[size];
+        }
+    };
 
     public int getIconActionReverse() {
         return iconActionReverse;
@@ -48,5 +66,18 @@ public class DefaultAction {
 
     public void setActionType(int actionType) {
         this.actionType = actionType;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(iconAction);
+        parcel.writeInt(iconActionReverse);
+        parcel.writeInt(actionType);
+        parcel.writeString(nameAction);
     }
 }

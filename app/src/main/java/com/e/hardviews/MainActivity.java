@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences = getPreferences(MODE_PRIVATE);
-        setTheme(preferences.getInt(THEME, R.style.AppTheme));
+        setTheme(preferences.getInt(THEME, R.style.SportDesert));
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         intent = new Intent(this, MainActivity.class);

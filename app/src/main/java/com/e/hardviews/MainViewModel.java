@@ -52,6 +52,11 @@ public class MainViewModel extends ViewModel {
         getActions();
     }
 
+    public void deleteAction(Action action){
+        model.deleteAction(action);
+        getActions();
+    }
+
     public void sendNewTheme(int theme){
         themeLiveData.setValue(theme);
     }

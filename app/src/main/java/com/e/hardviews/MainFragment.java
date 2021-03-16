@@ -25,6 +25,7 @@ import static com.e.hardviews.CreateActionFragment.AMOUNT_OF_DAY;
 public class MainFragment extends BaseFragment implements View.OnClickListener,
         ThemesAdapterListener, ActionsAdapterListener {
 
+    public static final String CHOSEN_ACTION = "chosenAction";
     private MainViewModel viewModel;
     private ActionsAdapter mainItemAdapter;
     private ThemesAdapter backgroundAdapter;
@@ -129,10 +130,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void editChosenAction(Action chosenAction) {
         Bundle bundle = new Bundle();
-        bundle.putString(ACTION_NAME, chosenAction.getNameAction());
-        bundle.putInt(ICON_ACTION, chosenAction.getIconAction());
-        bundle.putInt(ICON_ACTION_REVERSE, chosenAction.getIconActionReverse());
-        bundle.putInt(AMOUNT_OF_DAY,chosenAction.getAmountPerDay());
+        bundle.putParcelable(CHOSEN_ACTION, chosenAction);
         navController.navigate(R.id.confirmEditActionFragment, bundle);
         closeSettings();
     }

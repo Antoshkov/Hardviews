@@ -20,5 +20,6 @@
     <string name="saturday">Sa</string>
     <string name="sunday">Su</string>
     <string name="apply_and_Back">Apply and Back</string>
+    <string name="delete_task">Delete Task</string>
     <string name="text_Details">Task start each day as incomplete. Mark a task as done to increase yor steak.</string>
 </resources>

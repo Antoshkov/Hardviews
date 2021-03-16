@@ -12,9 +12,10 @@ class ConfirmNewActionFragment : BaseConfirmActionFragment() {
         initViews(view)
         super.onCreateView(inflater, container, savedInstanceState)
         btnSaveTask.setOnClickListener {
-            val icon = requireArguments().getInt(CreateActionFragment.ICON_ACTION)
-            val iconRev = requireArguments().getInt(CreateActionFragment.ICON_ACTION_REVERSE)
-            viewModel.addNewAction(Action(actionName.text.toString(), icon, iconRev, countTimes))
+            val icon = action!!.iconAction
+            val iconRev = action!!.iconActionReverse
+            val type = action!!.actionType
+            viewModel.addNewAction(Action(actionName.text.toString(), icon, iconRev, countTimes, type))
             navController.navigate(R.id.mainFragment)
         }
         return view

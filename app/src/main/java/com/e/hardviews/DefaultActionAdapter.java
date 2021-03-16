@@ -13,12 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.e.hardviews.DefaultAction.ALL;
+import static com.e.hardviews.Action.ALL;
 
 public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdapter.MyViewHolder> {
 
-    private List<DefaultAction> defaultActions = new ArrayList<>();
-    private List<DefaultAction> reserveList = new ArrayList<>();
+    private List<Action> defaultActions = new ArrayList<>();
+    private List<Action> reserveList = new ArrayList<>();
 
     private DefaultActionAdapterListener listener;
 
@@ -26,7 +26,7 @@ public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdap
         this.listener = listener;
     }
 
-    void sendDefaultAction(List<DefaultAction> defaultActionList) {
+    void sendDefaultAction(List<Action> defaultActionList) {
         defaultActions = defaultActionList;
         reserveList = defaultActionList;
         notifyDataSetChanged();
@@ -35,9 +35,9 @@ public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdap
     void sortByType(int type) {
         sendDefaultAction(reserveList);
         if (type != ALL) {
-            List<DefaultAction> actions = new ArrayList<>();
+            List<Action> actions = new ArrayList<>();
             for (int i = 0; i < defaultActions.size(); i++) {
-                DefaultAction action = defaultActions.get(i);
+                Action action = defaultActions.get(i);
                 if (action.getActionType() == type) {
                     actions.add(action);
                 }

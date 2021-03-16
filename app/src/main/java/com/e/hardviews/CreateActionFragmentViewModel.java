@@ -8,9 +8,9 @@ import java.util.List;
 public class CreateActionFragmentViewModel extends ViewModel {
 
     private MainModel model = new MainModel();
-    private MutableLiveData<List<DefaultAction>> defaultActionLiveData = new MutableLiveData<>();
+    private MutableLiveData<List<Action>> defaultActionLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<List<DefaultAction>> getDefaultActionLiveData() {
+    public MutableLiveData<List<Action>> getDefaultActionLiveData() {
         return defaultActionLiveData;
     }
 
