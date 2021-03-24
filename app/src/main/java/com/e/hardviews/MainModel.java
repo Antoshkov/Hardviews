@@ -18,8 +18,51 @@ public class MainModel {
     private final List<Action> defaultActions;
 
     public MainModel (){
-        actions = actionsDBDao.getAll();
+        actions = getAllFromDB();
         defaultActions = createDefaultActions();
+    }
+
+    private List<Action> getAllFromDB() {
+        new Thread(){
+            @Override
+            public void run() {
+                actions = actionsDBDao.getAll();
+            }
+        }.start();
+        return actions;
+    }
+
+    private List<Action> createDefaultActions(){
+        List<Action> defaultActionList = new ArrayList<>();
+        defaultActionList.add(new Action("brush teeth", R.drawable.ic_tooth, R.drawable.ic_tooth_reverse, 1, HEALTH));
+        defaultActionList.add(new Action("walk the dog", R.drawable.ic_dog_side, R.drawable.ic_dog_side_reverse, 1,TIME));
+        defaultActionList.add(new Action("Running", R.drawable.ic_run_fast_reverse, R.drawable.ic_run_fast, 1,HEALTH));
+        defaultActionList.add(new Action("Take a vitamins", R.drawable.ic_pill_reverse, R.drawable.ic_pill, 1,HEALTH));
+        defaultActionList.add(new Action("Homework", R.drawable.ic_lead_pencil_reverse, R.drawable.ic_lead_pencil, 1,TIME));
+        defaultActionList.add(new Action("Read a book", R.drawable.ic_bookshelf_reverse, R.drawable.ic_bookshelf, 1,TIME));
+        defaultActionList.add(new Action("Cook a chiken", R.drawable.ic_food_turkey_reverse, R.drawable.ic_food_turkey, 1,FOOD));
+        defaultActionList.add(new Action("Take a food", R.drawable.ic_pasta_reverse, R.drawable.ic_pasta, 1,FOOD));
+        defaultActionList.add(new Action("No alcohol", R.drawable.ic_glass_cocktail_reverse, R.drawable.ic_glass_cocktail, 1,BAD_HABITS));
+        defaultActionList.add(new Action("No smoking", R.drawable.ic_smoking_off_reverse, R.drawable.ic_smoking_off, 1,BAD_HABITS));
+        return defaultActionList;
+    }
+
+    private void insertIntoDB(final Action someAction){
+        new Thread(){
+            @Override
+            public void run() {
+                actionsDBDao.insert(someAction);
+            }
+        }.start();
+    }
+
+    private void deleteFromDB(final Action chosenAction){
+        new Thread(){
+            @Override
+            public void run() {
+                actionsDBDao.delete(chosenAction);
+            }
+        }.start();
     }
 
     public List<Action> getActions() {
@@ -53,34 +96,17 @@ public class MainModel {
     }
 
     public void addNewAction(Action newAction){
-        actionsDBDao.insert(newAction);
-        actions = actionsDBDao.getAll();
+        insertIntoDB(newAction);
+        actions = getAllFromDB();
     }
 
     public void editAction(Action chosenAction){
-        actionsDBDao.insert(chosenAction);
-        actions = actionsDBDao.getAll();
+       insertIntoDB(chosenAction);
+        actions = getAllFromDB();
     }
 
     public void deleteAction(Action action){
-        actionsDBDao.delete(action);
-        actions = actionsDBDao.getAll();
+        deleteFromDB(action);
+        actions = getAllFromDB();
     }
-
-    private List<Action> createDefaultActions(){
-        List<Action> defaultActionList = new ArrayList<>();
-        defaultActionList.add(new Action("brush teeth", R.drawable.ic_tooth, R.drawable.ic_tooth_reverse, 1, HEALTH));
-        defaultActionList.add(new Action("walk the dog", R.drawable.ic_dog_side, R.drawable.ic_dog_side_reverse, 1,TIME));
-        defaultActionList.add(new Action("Running", R.drawable.ic_run_fast_reverse, R.drawable.ic_run_fast, 1,HEALTH));
-        defaultActionList.add(new Action("Take a vitamins", R.drawable.ic_pill_reverse, R.drawable.ic_pill, 1,HEALTH));
-        defaultActionList.add(new Action("Homework", R.drawable.ic_lead_pencil_reverse, R.drawable.ic_lead_pencil, 1,TIME));
-        defaultActionList.add(new Action("Read a book", R.drawable.ic_bookshelf_reverse, R.drawable.ic_bookshelf, 1,TIME));
-        defaultActionList.add(new Action("Cook a chiken", R.drawable.ic_food_turkey_reverse, R.drawable.ic_food_turkey, 1,FOOD));
-        defaultActionList.add(new Action("Take a food", R.drawable.ic_pasta_reverse, R.drawable.ic_pasta, 1,FOOD));
-        defaultActionList.add(new Action("No alcohol", R.drawable.ic_glass_cocktail_reverse, R.drawable.ic_glass_cocktail, 1,BAD_HABITS));
-        defaultActionList.add(new Action("No smoking", R.drawable.ic_smoking_off_reverse, R.drawable.ic_smoking_off, 1,BAD_HABITS));
-        return defaultActionList;
-    }
-
-
 }

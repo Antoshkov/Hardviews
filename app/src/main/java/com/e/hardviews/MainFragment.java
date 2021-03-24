@@ -34,12 +34,6 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
             imgTimeSettings, imgAnotherSettings, imgProperties;
     private LinearLayout linearLayoutSettings, linearLayoutBackgrounds;
 
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,7 +113,6 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
     public void changeTheme(int theme) {
         viewModel.sendNewTheme(theme);
     }
-
 
     @Override
     public void createNewAction() {

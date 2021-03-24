@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
+import java.util.concurrent.Callable
 
 class ChooseDayFragment : BaseFragment() {
 
@@ -26,11 +27,10 @@ class ChooseDayFragment : BaseFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         val view = inflater.inflate(R.layout.fragment_choose_day, container, false)
         initViews(view)
-
         return view
     }
 
-    private fun initViews(view: View){
+    private fun initViews(view: View) {
         chkMonday = view.findViewById(R.id.chkMonday)
         chkTuesday = view.findViewById(R.id.chkTuesday)
         chkWednesday = view.findViewById(R.id.chkWednesday)
@@ -42,5 +42,4 @@ class ChooseDayFragment : BaseFragment() {
         btnClose = view.findViewById(R.id.imgClose)
 
     }
-
 }

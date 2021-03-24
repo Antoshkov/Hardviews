@@ -14,7 +14,7 @@ import androidx.navigation.Navigation;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
-public class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment{
 
     public NavController navController;
 
@@ -30,4 +30,6 @@ public class BaseFragment extends Fragment {
         if (imm.isAcceptingText())
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
+
+
 }
