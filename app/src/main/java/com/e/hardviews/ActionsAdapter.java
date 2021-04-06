@@ -1,20 +1,12 @@
 package com.e.hardviews;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHolder> {
@@ -60,6 +52,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         holder.actionView.getIconAction().setBackgroundResource(chosenAction.getIconAction());
         holder.actionView.getIconActionReverse().setBackgroundResource(chosenAction.getIconActionReverse());
         holder.actionView.getProgressMain().setProgress(chosenAction.getProgress());
+        holder.actionView.getPiecesView().setAmountTimes(chosenAction.getAmountPerDay());
         holder.actionView.getContainer().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

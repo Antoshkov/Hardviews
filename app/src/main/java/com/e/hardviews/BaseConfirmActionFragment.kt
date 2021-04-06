@@ -15,23 +15,22 @@ import androidx.lifecycle.ViewModelProviders
 import com.e.hardviews.CreateActionFragment.*
 import com.e.hardviews.MainFragment.CHOSEN_ACTION
 
-
 abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener {
-    lateinit var viewModel: MainViewModel
-    lateinit var editText: EditText
-    lateinit var iconAction: ImageView
-    lateinit var imgClose: ImageView
-    lateinit var imgChooseDay: ImageView
-    lateinit var actionName: TextView
-    lateinit var tvCountSymbol: TextView
-    lateinit var tvCountTimes: TextView
-    lateinit var btnSaveTask: Button
-    lateinit var btnPlus: ImageButton
-    lateinit var btnMinus: ImageButton
-    lateinit var constButton: ConstraintLayout
-    lateinit var piecesView: CreatePiecesView
-    var action: Action? = null
-    var countTimes: Int = 1
+    protected lateinit var viewModel: MainViewModel
+    protected lateinit var editText: EditText
+    protected lateinit var iconAction: ImageView
+    protected lateinit var imgClose: ImageView
+    protected lateinit var imgChooseDay: ImageView
+    protected lateinit var actionName: TextView
+    protected lateinit var tvCountSymbol: TextView
+    protected lateinit var tvCountTimes: TextView
+    protected lateinit var btnSaveTask: Button
+    protected lateinit var btnPlus: ImageButton
+    protected lateinit var btnMinus: ImageButton
+    protected lateinit var constButton: ConstraintLayout
+    protected lateinit var piecesView: CreatePiecesView
+    protected var action: Action? = null
+    protected var countTimes: Int = 1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         action = requireArguments().getParcelable(CHOSEN_ACTION)
@@ -71,8 +70,6 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
         imgChooseDay = view.findViewById(R.id.imgChooseDay)
         constButton = view.findViewById(R.id.constButton)
     }
-
-
 
     private fun getThemeBackgroundColor(): Int {
         val typedValue = TypedValue()

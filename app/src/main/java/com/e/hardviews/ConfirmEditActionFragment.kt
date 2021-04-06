@@ -21,6 +21,7 @@ class ConfirmEditActionFragment: BaseConfirmActionFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         createDeleteButton()
         action?.let { countTimes = it.amountPerDay }
+        action?.let { piecesView.setAmountTimes(it.amountPerDay) }
         tvCountTimes.text = countTimes.toString()
         btnSaveTask.setOnClickListener(this)
         btnDelete.setOnClickListener(this)

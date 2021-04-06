@@ -6,7 +6,6 @@
     android:layout_height="wrap_content"
     tools:background="@android:color/holo_green_dark">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constContainer"
         android:layout_width="wrap_content"
@@ -86,6 +85,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:progress="80" />
+
+        <com.e.hardviews.PiecesView
+            android:id="@+id/createPieces"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="@id/progressMain"
+            app:layout_constraintEnd_toEndOf="@id/progressMain"
+            app:layout_constraintStart_toStartOf="@id/progressMain"
+            app:layout_constraintTop_toTopOf="@id/progressMain"
+            tools:targetApi="lollipop" />
 
         <ImageButton
             android:id="@+id/btnEdit"

@@ -17,6 +17,7 @@ class ActionView : ConstraintLayout {
     constructor (context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     val container: ConstraintLayout
+    val piecesView: PiecesView
     val btnEdit: ImageButton
     val progressMain: ProgressBar
     val tvNameAction: TextView
@@ -26,7 +27,6 @@ class ActionView : ConstraintLayout {
     private val checkedBlack: ImageView
     private val imgWellDone: ImageView
     private val progressOneTime: ProgressBar
-    private val createPiecesView: CreatePiecesView
     private val scope = CoroutineScope(Job() + Dispatchers.Main)
 
     init {
@@ -41,7 +41,7 @@ class ActionView : ConstraintLayout {
         progressMain = view.findViewById(R.id.progressMain)
         btnEdit = view.findViewById(R.id.btnEdit)
         tvNameAction = view.findViewById(R.id.nameAction)
-        createPiecesView = CreatePiecesView(context)
+        piecesView = view.findViewById(R.id.createPieces)
     }
 
     private fun startProgressOneTime(){
