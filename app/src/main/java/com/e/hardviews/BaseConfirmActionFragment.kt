@@ -70,9 +70,6 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
         btnPlus = view.findViewById(R.id.btnPlus)
         imgChooseDay = view.findViewById(R.id.imgChooseDay)
         constButton = view.findViewById(R.id.constButton)
-
-        val progressMain = view.findViewById<CircularSeekBar>(R.id.progressMain)
-        progressMain.setIsTouchEnabled(false)
     }
 
 

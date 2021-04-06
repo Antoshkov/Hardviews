@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:background="@android:color/holo_green_dark">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/checkedWhite"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_check_bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/checkedBlack"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_check_bold_reverse"
+            android:elevation="1dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iconAction"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_dog_side"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iconActionReverse"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ic_dog_side_reverse"
+            android:elevation="1dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressOneTime"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:elevation="2dp"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/progress_circle"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="60"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/progressMain"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:indeterminateOnly="false"
+            android:progressDrawable="@drawable/progress_circle_main"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:progress="80" />
+
+        <ImageButton
+            android:id="@+id/btnEdit"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:background="@drawable/ic_dots_horizontal_circle"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/wellDone"
+            android:layout_width="184dp"
+            android:layout_height="184dp"
+            android:background="@drawable/background_welldone"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/nameAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some Action"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constContainer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

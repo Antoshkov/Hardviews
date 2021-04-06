@@ -18,7 +18,11 @@ public class Action implements Parcelable {
     private int id;
     private String nameAction;
     private boolean isCreator;
-    private int iconAction, iconActionReverse, amountPerDay, actionType;
+    private int iconAction;
+    private int iconActionReverse;
+    private int amountPerDay;
+    private int actionType;
+    private int progress;
     private int countPressedTimes = 0;
 
 
@@ -39,6 +43,7 @@ public class Action implements Parcelable {
         amountPerDay = in.readInt();
         countPressedTimes = in.readInt();
         actionType = in.readInt();
+        progress = in.readInt();
     }
 
     public static final Creator<Action> CREATOR = new Creator<Action>() {
@@ -52,6 +57,14 @@ public class Action implements Parcelable {
             return new Action[size];
         }
     };
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
 
     public void addPressedTimes(){
         countPressedTimes++;
@@ -136,5 +149,6 @@ public class Action implements Parcelable {
         parcel.writeInt(amountPerDay);
         parcel.writeInt(countPressedTimes);
         parcel.writeInt(actionType);
+        parcel.writeInt(progress);
     }
 }

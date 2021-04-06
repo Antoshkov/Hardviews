@@ -38,18 +38,18 @@ public class CreatePiecesView extends View {
         paint = new Paint();
     }
 
-
-
     @Override
     protected void onDraw(Canvas canvas) {
-
         canvas.drawARGB(0, 102, 204, 255);
-        paint.setColor(paintColor);
         paint.setStrokeWidth(10);
+        drawingPieces(canvas, paintColor, 100);
+        drawingPieces(canvas, Color.WHITE, 20);
+    }
 
+    private void drawingPieces(Canvas canvas, int paintColor, int alpha) {
+        paint.setColor(paintColor);
+        if (alpha != 100) paint.setAlpha(alpha);
         final int xc = 275, yc = 275, radius = 200;
-
-
         int[] positionX = new int[amountTimes];
         int[] positionY = new int[amountTimes];
         for (int i = 0; i < amountTimes; i++) {
@@ -60,7 +60,7 @@ public class CreatePiecesView extends View {
         for (int i = 0; i < amountTimes; i++) {
             canvas.save();
             canvas.rotate( 225 - i *(360 / amountTimes), positionX[i], positionY[i]);
-            canvas.drawLine(positionX[i], positionY[i], positionX[i] + 40, positionY[i] + 40, paint);
+            canvas.drawLine(positionX[i], positionY[i], positionX[i] + 20, positionY[i] + 20, paint);
             canvas.restore();
         }
     }
