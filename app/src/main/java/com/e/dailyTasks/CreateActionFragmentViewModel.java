@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

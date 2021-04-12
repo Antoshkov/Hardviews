@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.e.hardviews.Action.ALL;
+import static com.e.dailyTasks.Action.ALL;
 
 public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdapter.MyViewHolder> {
 

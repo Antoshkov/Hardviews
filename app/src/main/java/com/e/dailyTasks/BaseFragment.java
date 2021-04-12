@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

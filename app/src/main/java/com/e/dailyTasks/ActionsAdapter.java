@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.e.hardviews.MainActivity.THEME_COLOR;
-import static com.e.hardviews.MainFragment.CREATOR_ACTION;
+import static com.e.dailyTasks.MainActivity.THEME_COLOR;
+import static com.e.dailyTasks.MainFragment.CREATOR_ACTION;
 
 public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHolder>
         implements ActionView.SaveProgressListener {

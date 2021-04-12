@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;

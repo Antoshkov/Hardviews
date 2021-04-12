@@ -1,4 +1,4 @@
-package com.e.hardviews
+package com.e.dailyTasks
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -14,9 +14,9 @@ import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProviders
-import com.e.hardviews.CreateActionFragment.*
-import com.e.hardviews.MainActivity.THEME_COLOR
-import com.e.hardviews.MainFragment.CHOSEN_ACTION
+import com.e.dailyTasks.CreateActionFragment.*
+import com.e.dailyTasks.MainActivity.THEME_COLOR
+import com.e.dailyTasks.MainFragment.CHOSEN_ACTION
 
 abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener {
     protected lateinit var viewModel: MainViewModel

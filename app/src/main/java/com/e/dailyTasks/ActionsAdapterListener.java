@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 public interface ActionsAdapterListener {
     void createNewAction();

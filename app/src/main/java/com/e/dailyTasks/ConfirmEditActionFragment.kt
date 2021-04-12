@@ -1,4 +1,4 @@
-package com.e.hardviews
+package com.e.dailyTasks
 
 import android.annotation.SuppressLint
 import android.os.Bundle

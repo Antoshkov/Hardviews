@@ -1,4 +1,4 @@
-package com.e.hardviews;
+package com.e.dailyTasks;
 
 import android.os.Bundle;
 
@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -18,12 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import static com.e.hardviews.Action.ALL;
-import static com.e.hardviews.Action.BAD_HABITS;
-import static com.e.hardviews.Action.FOOD;
-import static com.e.hardviews.Action.HEALTH;
-import static com.e.hardviews.Action.TIME;
-import static com.e.hardviews.MainFragment.CHOSEN_ACTION;
+import static com.e.dailyTasks.Action.ALL;
+import static com.e.dailyTasks.Action.BAD_HABITS;
+import static com.e.dailyTasks.Action.FOOD;
+import static com.e.dailyTasks.Action.HEALTH;
+import static com.e.dailyTasks.Action.TIME;
+import static com.e.dailyTasks.MainFragment.CHOSEN_ACTION;
 
 public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener,
         RadioGroup.OnCheckedChangeListener {

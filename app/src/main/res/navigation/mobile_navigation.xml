@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.e.hardviews.MainFragment"
+        android:name="com.e.dailyTasks.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/createActionFragment"
-        android:name="com.e.hardviews.CreateActionFragment"
+        android:name="com.e.dailyTasks.CreateActionFragment"
         android:label="fragment_create_action"
         tools:layout="@layout/fragment_create_action" />
     <fragment
         android:id="@+id/confirmNewActionFragment"
-        android:name="com.e.hardviews.ConfirmNewActionFragment"
+        android:name="com.e.dailyTasks.ConfirmNewActionFragment"
         android:label="ConfirmNewActionFragment" />
     <fragment
         android:id="@+id/confirmEditActionFragment"
-        android:name="com.e.hardviews.ConfirmEditActionFragment"
+        android:name="com.e.dailyTasks.ConfirmEditActionFragment"
         android:label="ConfirmEditActionFragment" />
     <fragment
         android:id="@+id/chooseDayFragment"
-        android:name="com.e.hardviews.ChooseDayFragment"
+        android:name="com.e.dailyTasks.ChooseDayFragment"
         android:label="fragment_choose_day"
         tools:layout="@layout/fragment_choose_day" />
 </navigation>
