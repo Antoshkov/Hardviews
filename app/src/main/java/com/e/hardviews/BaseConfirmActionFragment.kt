@@ -1,18 +1,21 @@
 package com.e.hardviews
 
-import android.graphics.Color
+import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.ViewModelProviders
 import com.e.hardviews.CreateActionFragment.*
+import com.e.hardviews.MainActivity.THEME_COLOR
 import com.e.hardviews.MainFragment.CHOSEN_ACTION
 
 abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener {
@@ -27,20 +30,25 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
     protected lateinit var btnSaveTask: Button
     private lateinit var btnPlus: ImageButton
     private lateinit var btnMinus: ImageButton
+    private lateinit var sharedPreferences: SharedPreferences
     protected lateinit var constButton: ConstraintLayout
     protected lateinit var piecesView: CreatePiecesView
     protected lateinit var progressMain: ProgressBar
     protected var action: Action? = null
     protected var countTimes: Int = 1
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
         action = requireArguments().getParcelable(CHOSEN_ACTION)
         val textName = action?.nameAction
         viewModel = ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
         action?.let { iconAction.setBackgroundResource(it.iconAction) }
         progressMain.resetProgress()
         actionName.text = textName
-        piecesView.setPaintColor(getThemeBackgroundColor())
+        piecesView.setPaintColor(sharedPreferences
+                .getInt(THEME_COLOR, requireContext().getColor(R.color.sportDesert)))
         editText.setText(textName)
         tvCountSymbol.text = "${textName?.length}/28"
         editText.addTextChangedListener(mTextEditorWatcher)
@@ -72,13 +80,6 @@ abstract class BaseConfirmActionFragment : BaseFragment(), View.OnClickListener 
         imgChooseDay = view.findViewById(R.id.imgChooseDay)
         constButton = view.findViewById(R.id.constButton)
         progressMain = view.findViewById(R.id.progressMain)
-    }
-
-    private fun getThemeBackgroundColor(): Int {
-        val typedValue = TypedValue()
-        requireActivity().theme.resolveAttribute(android.R.attr.windowBackground, typedValue, true)
-        return if (typedValue.type >= TypedValue.TYPE_FIRST_COLOR_INT
-                && typedValue.type <= TypedValue.TYPE_LAST_COLOR_INT) typedValue.data else Color.RED
     }
 
     private val mTextEditorWatcher: TextWatcher = object : TextWatcher {

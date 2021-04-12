@@ -26,7 +26,11 @@ public class Action implements Parcelable {
     private int countPressedTimes = 0;
 
 
-    public Action(String nameAction, int iconAction, int iconActionReverse, int amountPerDay, int actionType){
+    public Action(String nameAction,
+                  int iconAction,
+                  int iconActionReverse,
+                  int amountPerDay,
+                  int actionType) {
         this.iconAction = iconAction;
         this.iconActionReverse = iconActionReverse;
         this.nameAction = nameAction;

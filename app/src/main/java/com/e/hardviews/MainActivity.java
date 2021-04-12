@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String THEME_COLOR = "themeColor";
     private final String THEME = "theme";
     private Intent intent;
     private MainViewModel viewModel;
@@ -18,20 +19,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new Exception("loh exception");
         preferences = getPreferences(MODE_PRIVATE);
         setTheme(preferences.getInt(THEME, R.style.SportDesert));
         setContentView(R.layout.activity_main);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         intent = new Intent(this, MainActivity.class);
-        viewModel.getThemeLiveData().observe(this, new Observer<Integer>() {
+        viewModel.getThemeLiveData().observe(this, new Observer<AppTheme>() {
             @Override
-            public void onChanged(Integer newTheme) {
+            public void onChanged(AppTheme newTheme) {
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putInt(THEME, newTheme);
+                editor.putInt(THEME, newTheme.getThemeResource());
+                editor.putInt(THEME_COLOR, newTheme.getColorForCanvas());
                 editor.apply();
                 finish();
-                intent.putExtra("extra", newTheme);
+                intent.putExtra("extra", newTheme.getThemeResource());
                 startActivity(intent);
             }
         });

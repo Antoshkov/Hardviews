@@ -1,5 +1,8 @@
 package com.e.hardviews;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,21 +13,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.e.hardviews.MainActivity.THEME_COLOR;
 import static com.e.hardviews.MainFragment.CREATOR_ACTION;
 
-public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHolder> implements ActionView.SaveProgressListener {
+public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHolder>
+        implements ActionView.SaveProgressListener {
 
-    private ActionsAdapterListener listener;
+    private final ActionsAdapterListener listener;
     private List<Action> actions = new ArrayList<>();
     private boolean settingsCheck = false;
+    private final int piecesColor;
     private Action itemAction;
 
-    ActionsAdapter(ActionsAdapterListener listener) {
+    ActionsAdapter(Activity activity, ActionsAdapterListener listener) {
         this.listener = listener;
+        SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE);
+        piecesColor = preferences.getInt(THEME_COLOR, activity.getColor(R.color.sportDesert));
     }
 
     public void addCreatorAction() {
-        Action creatorAction = new Action(CREATOR_ACTION, R.drawable.ic_plus_thick, R.drawable.ic_plus_thick, 1, 1);
+        Action creatorAction = new Action(CREATOR_ACTION,
+                R.drawable.ic_plus_thick,
+                R.drawable.ic_plus_thick,
+                1, 1);
         creatorAction.setCreator(true);
         boolean hasCreator = false;
         for (int i = 0; i < actions.size(); i++) {
@@ -55,14 +66,16 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_recycler, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final Action chosenAction = actions.get(position);
-
+        final int currentProgress =
+                (100 / chosenAction.getAmountPerDay()) * chosenAction.getCountPressedTimes();
         if (settingsCheck && !chosenAction.isCreator()) {
             holder.actionView.getBtnEdit().setVisibility(View.VISIBLE);
             holder.actionView.getBtnEdit().setOnClickListener(new View.OnClickListener() {
@@ -76,14 +89,16 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         holder.actionView.attachListener(this);
         holder.actionView.getTvNameAction().setText(chosenAction.getNameAction());
         holder.actionView.getIconAction().setBackgroundResource(chosenAction.getIconAction());
-        holder.actionView.getIconActionReverse().setBackgroundResource(chosenAction.getIconActionReverse());
-        holder.actionView.getProgressMain().setProgress((100 / chosenAction.getAmountPerDay()) * chosenAction.getCountPressedTimes());
+        holder.actionView.getIconActionReverse()
+                .setBackgroundResource(chosenAction.getIconActionReverse());
+        holder.actionView.getProgressMain().setProgress((currentProgress));
+        holder.actionView.getPiecesView().setPaintColor(piecesColor);
         holder.actionView.getPiecesView().setAmountTimes(chosenAction.getAmountPerDay());
         holder.actionView.getContainer().setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                if ((chosenAction.getCountPressedTimes() < chosenAction.getAmountPerDay()) && !chosenAction.isCreator()) {
-                    int currentProgress = (100 / chosenAction.getAmountPerDay()) * chosenAction.getCountPressedTimes();
+                if ((chosenAction.getCountPressedTimes() < chosenAction.getAmountPerDay())
+                        && !chosenAction.isCreator()) {
                     int newProgress = 100 / chosenAction.getAmountPerDay() + currentProgress;
                     int progress = chosenAction.getProgress();
                     holder.actionView.startAnimationProgress(progress, newProgress);
@@ -97,7 +112,7 @@ public class ActionsAdapter extends RecyclerView.Adapter<ActionsAdapter.MyViewHo
         holder.actionView.getContainer().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (chosenAction.isCreator()) { listener.createNewAction(); }
+                if (chosenAction.isCreator()) listener.createNewAction();
                 else { }
             }
         });

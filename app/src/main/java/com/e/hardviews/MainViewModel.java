@@ -11,9 +11,9 @@ public class MainViewModel extends ViewModel {
 
     private MainModel model = new MainModel();
     private LiveData<List<Action>> actionsLiveData;
-    private MutableLiveData<Integer> themeLiveData = new MutableLiveData<>();
+    private MutableLiveData<AppTheme> themeLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<Integer> getThemeLiveData() {
+    public MutableLiveData<AppTheme> getThemeLiveData() {
         return themeLiveData;
     }
 
@@ -37,7 +37,7 @@ public class MainViewModel extends ViewModel {
         model.deleteAction(action);
     }
 
-    public void sendNewTheme(int theme) {
+    public void sendNewTheme(AppTheme theme) {
         themeLiveData.setValue(theme);
     }
 

@@ -62,8 +62,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
     private void initViews(View view){
         recyclerMain = view.findViewById(R.id.recycler);
         recyclerBackground = view.findViewById(R.id.recycleBackgrounds);
-        mainItemAdapter = new ActionsAdapter(this);
-        backgroundAdapter = new ThemesAdapter(this);
+        mainItemAdapter = new ActionsAdapter(getActivity(), this);
+        backgroundAdapter = new ThemesAdapter(getContext(), this);
         imgMenu = view.findViewById(R.id.btnMenu);
         imgSettings = view.findViewById(R.id.btnOpenSettings);
         imgStar = view.findViewById(R.id.btnStar);
@@ -104,7 +104,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener,
     }
 
     @Override
-    public void changeTheme(int theme) {
+    public void changeTheme(AppTheme theme) {
         viewModel.sendNewTheme(theme);
     }
 

@@ -47,13 +47,13 @@ public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdap
             defaultActions = reserveList;
         }
         notifyDataSetChanged();
-
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_create_action, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_create_action, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -85,8 +85,6 @@ public class DefaultActionAdapter extends RecyclerView.Adapter<DefaultActionAdap
             imageAction = itemView.findViewById(R.id.imgCreateAction);
             imgGoNext = itemView.findViewById(R.id.imgGoNext);
             nameAction = itemView.findViewById(R.id.tvNameActionCreate);
-
-
         }
     }
 }

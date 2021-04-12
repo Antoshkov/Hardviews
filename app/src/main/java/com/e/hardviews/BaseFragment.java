@@ -20,16 +20,16 @@ public class BaseFragment extends Fragment{
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public void hideKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getActivity()
+                .getSystemService(INPUT_METHOD_SERVICE);
         if (imm.isAcceptingText())
             imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
     }
-
-
 }

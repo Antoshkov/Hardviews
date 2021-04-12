@@ -10,7 +10,8 @@ class MainModel {
     private var db = App.getInstance().database
     private var actionsDBDao = db.actionsDBDao()
     private var defaultActions: List<Action>
-    private val ioScope = CoroutineScope(Job() + Dispatchers.IO + CoroutineExceptionHandler { coroutineContext, throwable ->
+    private val ioScope = CoroutineScope(Job() + Dispatchers.IO
+            + CoroutineExceptionHandler { coroutineContext, throwable ->
         Log.e("coroutineTag", throwable.message ?: "")
     })
 

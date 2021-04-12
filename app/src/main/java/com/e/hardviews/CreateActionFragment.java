@@ -25,7 +25,8 @@ import static com.e.hardviews.Action.HEALTH;
 import static com.e.hardviews.Action.TIME;
 import static com.e.hardviews.MainFragment.CHOSEN_ACTION;
 
-public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener, RadioGroup.OnCheckedChangeListener {
+public class CreateActionFragment extends BaseFragment implements DefaultActionAdapterListener,
+        RadioGroup.OnCheckedChangeListener {
 
     private CreateActionFragmentViewModel viewModel;
     private DefaultActionAdapter adapter;

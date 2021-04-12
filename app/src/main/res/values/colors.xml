@@ -3,16 +3,16 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
-    <color name="sportDarkBlue">#2D385C</color>
-    <color name="sportRed">#65333B</color>
+    <color name="sportDarkBlue">#4863BC</color>
+    <color name="sportRed">#5E2222</color>
     <color name="sportLightBlue">#355978</color>
-    <color name="sportPurple">#503868</color>
+    <color name="sportPurple">#7A569E</color>
     <color name="sportDarkGreen">#0C5A0D</color>
     <color name="sportLightGreen">#6EB188</color>
     <color name="sportDesert">#AF5C1B</color>
     <color name="sportCalifornia">#539C99</color>
     <color name="sportGray">#585577</color>
-    <color name="sportPink">#5E3A61</color>
+    <color name="sportPink">#995B9E</color>
 
 
 </resources>

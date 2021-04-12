@@ -2,17 +2,12 @@ package com.e.hardviews;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.RequiresApi;
 
 public class PiecesView extends View {
-    private Paint paint;
+    private final Paint paint;
     protected int amountTimes = 0;
     protected int paintColor;
 
@@ -41,13 +36,11 @@ public class PiecesView extends View {
         paint = new Paint();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onDraw(Canvas canvas) {
         canvas.drawARGB(0, 102, 204, 255);
         paint.setStrokeWidth(10);
-        drawingPieces(canvas, getContext().getColor(R.color.sportDesert), 100);
-        //drawingPieces(canvas, Color.WHITE, 20);
+        drawingPieces(canvas, paintColor, 100);
     }
 
     protected void drawingPieces(Canvas canvas, int paintColor, int alpha) {
@@ -63,8 +56,11 @@ public class PiecesView extends View {
         }
         for (int i = 0; i < amountTimes; i++) {
             canvas.save();
-            canvas.rotate( 225 - i *(360 / amountTimes), positionX[i], positionY[i]);
-            canvas.drawLine(positionX[i], positionY[i], positionX[i] + 20, positionY[i] + 20, paint);
+            canvas.rotate(225 - i * (360 / amountTimes), positionX[i], positionY[i]);
+            canvas.drawLine(positionX[i],
+                    positionY[i],
+                    positionX[i] + 20,
+                    positionY[i] + 20, paint);
             canvas.restore();
         }
     }

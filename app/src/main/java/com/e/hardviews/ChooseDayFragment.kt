@@ -40,6 +40,5 @@ class ChooseDayFragment : BaseFragment() {
         chkSunday = view.findViewById(R.id.chkSunday)
         btnApply = view.findViewById(R.id.btnApply)
         btnClose = view.findViewById(R.id.imgClose)
-
     }
 }

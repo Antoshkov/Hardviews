@@ -15,7 +15,6 @@ import kotlinx.coroutines.*
 class ActionView : ConstraintLayout {
     constructor (context: Context) : super(context) {}
     constructor (context: Context, attrs: AttributeSet?) : super(context, attrs) {}
-    constructor (context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {}
 
     val container: ConstraintLayout
     val piecesView: PiecesView
@@ -53,14 +52,16 @@ class ActionView : ConstraintLayout {
     private fun startProgressOneTime() {
         val animatorRun = ValueAnimator.ofInt(0, 100)
         animatorRun.duration = 1200
-        animatorRun.addUpdateListener { valueAnimator -> progressOneTime.progress = valueAnimator.animatedValue.toString().toInt() }
+        animatorRun.addUpdateListener { valueAnimator ->
+            progressOneTime.progress = valueAnimator.animatedValue.toString().toInt() }
         animatorRun.start()
     }
 
     private fun startProgressOneTimeReverse() {
         val animatorRun = ValueAnimator.ofInt(100, 0)
         animatorRun.duration = 1200
-        animatorRun.addUpdateListener { valueAnimator -> progressOneTime.progress = valueAnimator.animatedValue.toString().toInt() }
+        animatorRun.addUpdateListener { valueAnimator ->
+            progressOneTime.progress = valueAnimator.animatedValue.toString().toInt() }
         animatorRun.start()
     }
 
@@ -72,7 +73,8 @@ class ActionView : ConstraintLayout {
             startProgressOneTimeReverse()
             val animator = ValueAnimator.ofInt(lastProgress, partProgress)
             animator.duration = 1200
-            animator.addUpdateListener { valueAnimator -> progressMain.progress = valueAnimator.animatedValue.toString().toInt() }
+            animator.addUpdateListener { valueAnimator ->
+                progressMain.progress = valueAnimator.animatedValue.toString().toInt() }
             animator.addListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(p0: Animator?) {}
 

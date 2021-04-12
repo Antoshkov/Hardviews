@@ -15,7 +15,8 @@ class ConfirmEditActionFragment : BaseConfirmActionFragment() {
 
     private lateinit var btnDelete: Button
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_confirm_action, container, false)
         initViews(view)
         super.onCreateView(inflater, container, savedInstanceState)
@@ -59,6 +60,5 @@ class ConfirmEditActionFragment : BaseConfirmActionFragment() {
                 navController.navigate(R.id.mainFragment)
             }
         }
-
     }
 }
