@@ -13,11 +13,11 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         android:layout_marginBottom="24dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/btnMenu"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:spanCount="2" />
 
     <LinearLayout
         android:id="@+id/linearLayoutSettings"
@@ -29,8 +29,7 @@
         android:orientation="horizontal"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-       >
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/btnCloseSettings"
@@ -75,10 +74,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleBackgrounds"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
+            android:layout_height="24dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </LinearLayout>
 
     <ImageView
